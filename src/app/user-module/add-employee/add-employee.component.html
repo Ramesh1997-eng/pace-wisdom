@@ -1,0 +1,164 @@
+<div class="container-fluid">
+    <!--form starts here-->
+    <form name="userAddForm" #userAddForm="ngForm">
+        <div class="row margn-tp">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active" aria-current="page">Employee Management</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Add Employee</h3>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary" style="float: right; " type="submit" (click)="addEmployee(userAddForm) ">Submit</button>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row margnrtp-15">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">First Name:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <input type="text" class="form-control" type="text" name="firstname" id="firstname" oninput="javascript: if (this.value.length==1 && this.value==' ' ) this.value='' ; " placeholder="Enter FirstName" [(ngModel)]="user.firstName" #firstname="ngModel" [ngClass]="{ 'is-invalid': (userAddForm.submitted && firstname.invalid) || (firstname.invalid && firstname.touched) }"
+                            required>
+                        <span class="danger invalid-feedback">
+                            First Name required!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Last Name:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <input type="text" class="form-control" name="lastname" id="lastname" oninput="javascript: if (this.value.length==1 && this.value==' ' ) this.value='' ; " placeholder="Enter Last Name" [(ngModel)]="user.lastName" #lastname="ngModel" [ngClass]="{
+                            'is-invalid': (userAddForm.submitted && lastname.invalid) || (lastname.invalid && lasttname.touched) } " required>
+                        <span class="danger invalid-feedback">
+                            Last Name required!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margnrtp-15">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Email ID:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <input class="form-control" type="text" name="email" id="email" placeholder="Enter EmailID" [(ngModel)]="user.email" oninput="javascript: if (this.value.length==1 && this.value==' ' ) this.value='' ; " #email="ngModel" [ngClass]=" { 'is-invalid': (userAddForm.submitted
+                        && email.invalid) || (email.invalid && email.touched) } " required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}$" />
+                        <span *ngIf="!user.email " class="danger invalid-feedback ">
+                            Email ID required!!!
+                        </span>
+
+                        <span *ngIf="email.errors?.pattern" class="danger invalid-feedback">
+                            Enter Valid Email!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Mobile Number:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <input class="form-control" type="text" name="mobile" id="mobile" placeholder="Enter Mobile Number" [(ngModel)]="user.mobileNumber" #mobile="ngModel" [ngClass]="{ 'is-invalid': (userAddForm.submitted && mobile.invalid)
+                        || (mobile.invalid && mobile.touched) }" pattern="^[1-9]{1}[0-9]{9}$" required maxlength="10" />
+                        <span *ngIf="!user.mobileNumber " class="danger invalid-feedback ">
+                            Mobile Number required!!!
+                        </span>
+                        <span *ngIf="mobile.errors?.maxlength" class="danger invalid-feedback ">
+                            Mobile Number Max Length is 10!!!
+                        </span>
+                        <span *ngIf="mobile.errors?.pattern" class="danger invalid-feedback ">
+                            Mobile Number is not valid!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margnrtp-15">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Department:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <input type="text" class="form-control" name="department" id="department" oninput="javascript: if (this.value.length==1 && this.value==' ' ) this.value='' ; " placeholder="Enter Department" [(ngModel)]="user.department
+                        " #department="ngModel" [ngClass]="{ 'is-invalid': (userAddForm.submitted && department.invalid) || (department.invalid && department.touched) } " required>
+                        <span class="danger invalid-feedback">
+                            Department required!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Current Location(Latitude):</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <div *ngIf="geolocation$ | async as position ">
+                            <span>{{position.coords.latitude}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row margnrtp-15">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Upload Image:</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <label class="file">
+                            <input type="file" #imageInput id="file" aria-label="File browser example" accept="image/*"
+                                (change)="processFile(imageInput)">
+                            <span class="file-custom"></span>
+                        </label>
+                        <span class="danger invalid-feedback" *ngIf="!user.imageUrl">
+                            Profile Picture required!!!
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 paddingT15">
+                        <label for="exampleFormControlInput1">Current Location(Longitude):</label>
+                    </div>
+                    <div class="col-md-8 paddingT15">
+                        <div *ngIf="geolocation$ | async as position ">
+                            <span>{{position.coords.longitude}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--form ends here-->
+    <div class="row margnrtp-15">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img [src]="url" *ngIf="url" height="220" width="200">
+        </div>
+    </div>
+    <!--footer-->
+    <div class="row d-flex align-items-center">
+        <div class="footer">
+            <h3 class="text">© Copyright 2020 - RTS Enterprises</h3>
+        </div>
+    </div>
+    <!--footer-->
+</div>

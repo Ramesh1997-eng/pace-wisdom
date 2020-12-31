@@ -1,0 +1,126 @@
+<div class="container-fluid">
+    <div class="row margn-tp">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item active" aria-current="page">Employee Management</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3> View Employee Details </h3>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" style="float: right; " type="submit" (click)="backToList()">Back</button>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <!--View Employee Details Starts Here-->
+    <div class="row margnrtp-20">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img src="{{employeeData?.imageUrl}}" alt="Upload An Image To View" *ngIf="employeeData?.imageUrl" height="250" width="200" class="img-thumbnail">
+        </div>
+        <div class="col-md-6 d-flex justify-content-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 style="text-align: center;text-decoration: underline;">Current Location</h3>
+                </div>
+                <div class="col-md-12 d-flex justify-content-center">
+                    <agm-map [latitude]="employeeData?.latitude" [longitude]="employeeData?.longitude">
+                        <agm-marker [latitude]="employeeData?.latitude" [longitude]="employeeData?.longitude">
+                        </agm-marker>
+                    </agm-map>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margnrtp-20">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>First Name</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.firstName}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Last Name</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.lastName}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margnrtp-20">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Email ID</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.email}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Mobile Number</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.mobileNumber}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margnrtp-20">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Department</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.department}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Latitude</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.latitude}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margnrtp-20">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Longitude</strong>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{employeeData?.longitude}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <!--View Employee details Ends Here-->
+    <!--footer-->
+    <div class="row d-flex align-items-center">
+        <div class="footer">
+            <h3 class="text">© Copyright 2020 - RTS Enterprises</h3>
+        </div>
+    </div>
+    <!--footer-->
+</div>
