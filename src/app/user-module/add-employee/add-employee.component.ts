@@ -16,6 +16,7 @@ export class AddEmployeeComponent implements OnInit {
   selectedFile: ImageSnippet;
   url;
   isUploaded = false;
+  loading=false;
   constructor(private readonly geolocation$: GeolocationService, private service: EmployeeService, private route: ActivatedRoute,
     private router: Router) { }
 
@@ -31,9 +32,11 @@ export class AddEmployeeComponent implements OnInit {
   //Add Employee
   addEmployee(event: NgForm) {
     if (event.form.status == "VALID" && this.isUploaded) {
+      this.loading=true;
       this.service.addEmployee(this.user).subscribe((el) => {
-        alert("Added Successfully");
+        this.loading=false;
         if (el) {
+          alert("Added Successfully");
           this.router.navigate(["../user/list-employees"], { relativeTo: this.route.parent });
         }
       })

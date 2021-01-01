@@ -14,7 +14,7 @@
                 <h3>Add Employee</h3>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-primary" style="float: right; " type="submit" (click)="addEmployee(userAddForm) ">Submit</button>
+                <button class="btn btn-primary" style="float: right;" [disabled]="loading" type="submit" (click)="addEmployee(userAddForm) ">Submit</button>
             </div>
         </div>
         <div class="dropdown-divider"></div>
